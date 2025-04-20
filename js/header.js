@@ -3,7 +3,7 @@ const CACHE = JSON.parse(localStorage.getItem("category"))
 const dataHeader = CACHE || []
 
 if(!CACHE) {
-  fetch("https://papajson.vercel.app//category")
+  fetch("https://papajson.vercel.app/category")
     .then(res => res.json())
     .then(info => {
       dataHeader.length = 0
