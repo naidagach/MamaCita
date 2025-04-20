@@ -2,7 +2,7 @@ const content = document.getElementById('content')
 const data = []
 const category = new URLSearchParams(location.search).get('category')
 
-fetch(`http://localhost:3000/${category}`)
+fetch(`https://papajson.vercel.app/${category}`)
   .then(res => res.json())
   .then(info => {
     data.length = 0

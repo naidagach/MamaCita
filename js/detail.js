@@ -4,7 +4,7 @@ const url = new URLSearchParams(location.search)
 const category = url.get('category')
 const id = url.get('id')
 
-fetch(`http://localhost:3000/${category}/${id}`)
+fetch(`https://papajson.vercel.app/${category}/${id}`)
   .then(res => res.json())
   .then(info => {
     info.count = 1
