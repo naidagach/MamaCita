@@ -1,0 +1,55 @@
+-- Таблица категорий продуктов
+CREATE TABLE categories (
+  id VARCHAR(255) PRIMARY KEY,
+  name VARCHAR(255) NOT NULL
+);
+
+-- Таблица продуктов
+CREATE TABLE products (
+  id VARCHAR(255) PRIMARY KEY,
+  category_id VARCHAR(255),
+  title VARCHAR(255) NOT NULL,
+  composition TEXT,
+  price DECIMAL(10, 2),
+  image_url TEXT,
+  FOREIGN KEY (category_id) REFERENCES categories(id)
+);
+
+-- Таблица вариаций продуктов (например, разные размеры пиццы)
+CREATE TABLE variations (
+  id VARCHAR(255) PRIMARY KEY,
+  product_id VARCHAR(255),
+  type VARCHAR(255) NOT NULL,
+  size VARCHAR(255) NOT NULL,
+  price DECIMAL(10, 2),
+  FOREIGN KEY (product_id) REFERENCES products(id)
+);
+
+-- Таблица пользователей (если предполагается регистрация пользователей)
+CREATE TABLE users (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(255),
+  email VARCHAR(255),
+  password_hash TEXT
+);
+
+-- Таблица заказов
+CREATE TABLE orders (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  user_id INT NOT NULL,
+  total_price DECIMAL(10, 2),
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+-- Таблица товаров в заказах
+CREATE TABLE order_items (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  order_id INT,
+  product_id VARCHAR(255),
+  variation_id VARCHAR(255),
+  quantity INT,
+  FOREIGN KEY (order_id) REFERENCES orders(id),
+  FOREIGN KEY (product_id) REFERENCES products(id),
+  FOREIGN KEY (variation_id) REFERENCES variations(id)
+);
