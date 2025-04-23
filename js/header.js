@@ -11,6 +11,7 @@ if(!CACHE) {
       localStorage.setItem("category", JSON.stringify(dataHeader))
       handleHeader()
     })
+    .catch(item => error())
 }
 function handleHeader() {
   menu.innerHTML = ''

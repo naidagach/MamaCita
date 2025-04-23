@@ -9,6 +9,7 @@ fetch(`https://papajson.vercel.app/${category}`)
     data.push(...info)
     show()
   })
+  .catch(item => error())
 
   function show() {
     content.innerHTML = ''

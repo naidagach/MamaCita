@@ -12,6 +12,7 @@ fetch(`https://papajson.vercel.app/${category}/${id}`)
     dataDetail.push(info)
     showDetail()
   })
+  .catch(item => error())
 
 function showDetail() {
   const item = dataDetail[0]
